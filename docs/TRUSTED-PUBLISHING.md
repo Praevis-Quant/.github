@@ -264,7 +264,7 @@ From Praevis-Quant (praevis-thetadata, 0.1.3 to 0.1.5):
 
 | Repository | Before | Adoption |
 |---|---|---|
-| praevis-thetadata | `check`, `build` (binary variant), `publish-crates`, `publish-pypi`, `github-release`, dry-run `publish-path-check`; `verify` proposed (praevis-thetadata#236) | Adopting: gap list with the owner (2026-11-22) |
+| praevis-thetadata | `check`, `build` (binary variant), `publish-crates`, `publish-pypi`, `github-release`, dry-run `publish-path-check`; `verify` from praevis-thetadata#236 | Adopted (praevis-thetadata#241): `gate`, `build` (binary variant, signing only on `v*` tag pushes), `publish`, `publish-pypi`, `github-release` (draft first), `verify`, plus the dry-run `publish-path-check`. First real use: the next release, `0.1.6` |
 | praevis-data, praevis, axiom-ledger, twsapi-mirror, oquants-com, ibkr-rs, .github | publish nothing (checked 2026-11-22: only the line-endings check; praevis-data has no workflows) | Not applicable until a package ships |
 
 Each adoption is one pull request whose dry run passes before merge. The first
