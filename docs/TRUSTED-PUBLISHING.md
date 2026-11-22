@@ -156,6 +156,15 @@ artifact, and the publication record cites it.
 - Triggers: `push: tags: ['v*']` publishes. `pull_request` (filtered to the
   workflow and release scripts) and `workflow_dispatch` are dry runs that run
   jobs 1 and 2 and never publish.
+- **Praevis-Quant addition (owner decision 2026-11-22):** dry runs also run
+  `publish-path-check` ("Publish path (dry run)"), with `needs: [gate,
+  build]` and `if: needs.gate.outputs.publish != 'true'`, `contents: read`
+  only, no environment and no OIDC token. It exercises the publish job's
+  checks without publishing: the build's pinned toolchain, the bundle
+  against `SHA256SUMS`, `cargo package --no-verify` compared byte for byte
+  with the checksummed `.crate` files, and the crates.io download checks
+  against a version already published. So the publish path is tested before
+  the first tag.
 - Top-level `permissions: contents: read`; every extra permission is granted
   only in the job listed above.
 - `concurrency: group: trusted-publishing-${{ github.ref }}`, with
